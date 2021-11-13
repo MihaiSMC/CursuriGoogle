@@ -11,5 +11,4 @@ get_element.submit()
 
 product = browser.find_element(By.XPATH, '//*[@id="card_grid"]/div[1]/div/div/div[4]/div[2]/form/button')
 product.click()
-time.sleep(10)
-
+time.sleep(20)
