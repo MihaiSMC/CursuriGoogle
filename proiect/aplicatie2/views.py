@@ -1,3 +1,15 @@
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
+from datetime import datetime
 
 # Create your views here.
+from aplicatie2.models import Pontaj
+
+
+def newPontaj(request):
+    Pontaj.objects.create(user_id=request.user.id, start_date=datetime.now())
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def stopTimesheet(request):
+    Pontaj.objects.filter(user_id=request.user.id, end_date=None).update(end_date=datetime.now())
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
