@@ -1,6 +1,7 @@
 from django import forms
 from aplicatie1.models import Location
 
+
 class LocationForm(forms.ModelForm):
     class Meta:
         model = Location
@@ -16,7 +17,8 @@ class LocationForm(forms.ModelForm):
         country_value = cleaned_data.get('country')
 
         if self.pk:
-            if Location.objects.filter(city__icontains=city_value, country__icontains=country_value, active=1).exclude(id=self.pk).exists():
+            if Location.objects.filter(city__icontains=city_value, country__icontains=country_value, active=1).exclude(
+                    id=self.pk).exists():
                 self._errors['city'] = self.error_class(['Orasul si tara deja exista.'])
         else:
             if Location.objects.filter(city__icontains=city_value, country__icontains=country_value, active=1).exists():
